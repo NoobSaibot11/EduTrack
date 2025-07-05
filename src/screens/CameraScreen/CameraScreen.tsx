@@ -1,11 +1,9 @@
-// src/screens/CameraScreen.tsx
-
 import React, { useRef, useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../navigation/AppNavigator';
 import { Camera, useCameraDevice } from 'react-native-vision-camera';
+import { RootStackParamList } from '../../navigation/types';
 
 const CameraScreen: React.FC = () => {
   const cameraRef = useRef<Camera>(null);
@@ -22,10 +20,7 @@ const CameraScreen: React.FC = () => {
           flash: 'off',
         });
 
-        // This will return a file path like: "file:///..."
         const imagePath = photo.path;
-
-        // Navigate using the image path (base64 not directly supported)
         navigation.navigate('Home', { image: imagePath });
       } catch (err) {
         console.error(err);
@@ -71,7 +66,7 @@ const styles = StyleSheet.create({
   },
   captureButton: {
     position: 'absolute',
-    bottom: 30,
+    bottom: 100,
     alignSelf: 'center',
     backgroundColor: '#fff',
     padding: 15,
